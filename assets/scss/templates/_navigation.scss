@@ -1,6 +1,6 @@
 .top-header {
   font-size: 12px;
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
   transform-origin: top;
   font-weight: 600;
 
@@ -12,7 +12,7 @@
 
 .navigation {
   background: linear-gradient(to right, transparent 50%, $primary-color 50%);
-  transition: .2s ease;
+  transition: 0.2s ease;
 
   @include desktop {
     background: $secondary-color;
@@ -23,7 +23,7 @@
   }
 }
 
-.navbar-collapse{
+.navbar-collapse {
   @include desktop {
     background: $secondary-color;
   }
@@ -62,7 +62,7 @@
     background: $white;
     transform: scaleY(0);
     transform-origin: top;
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
   }
 
   &:hover,
@@ -83,10 +83,10 @@ link:focus,
   color: $white;
 }
 
-.navbar-dark .navbar-nav .active>.nav-link,
+.navbar-dark .navbar-nav .active > .nav-link,
 .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .nav-link.show,
-.navbar-dark .navbar-nav .show>.nav-link {
+.navbar-dark .navbar-nav .show > .nav-link {
   color: $white;
 }
 
@@ -110,10 +110,16 @@ link:focus,
 .navbar {
   .dropdown {
     &:hover {
-      .dropdown-menu {
+      .dropleft .dropdown-menu {
+        right: calc(100% + 15px);
+      }
+      > .dropdown-menu {
         visibility: visible;
         opacity: 1;
-        transform: translateY(0)
+        transform: translateY(0);
+        &.dropdown-submenu {
+          top: 0;
+        }
       }
     }
 
@@ -125,7 +131,7 @@ link:focus,
       border-radius: 0;
       display: block;
       visibility: hidden;
-      transition: .3s ease;
+      transition: 0.3s ease;
       opacity: 0;
       transform: translateY(20px);
       background: $white;
@@ -151,7 +157,7 @@ link:focus,
     &-item {
       position: relative;
       color: $text-color-dark;
-      transition: .2s ease;
+      transition: 0.2s ease;
       text-transform: capitalize;
       font-family: $primary-font;
 

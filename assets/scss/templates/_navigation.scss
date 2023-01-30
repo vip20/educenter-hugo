@@ -16,16 +16,16 @@
 
   @include desktop {
     background: $secondary-color;
-
-    .navbar-brand {
-      padding: 12px 0;
-    }
   }
 }
 
 .navbar-collapse {
   @include desktop {
     background: $secondary-color;
+    max-height: calc(100vh - 80px);
+    &.show {
+      overflow-y: auto;
+    }
   }
 }
 
@@ -44,6 +44,11 @@
 }
 
 .nav-item {
+  @include desktop {
+    &:last-child {
+      margin-bottom: 20px;
+    }
+  }
   .nav-link {
     text-transform: uppercase;
     font-weight: 600;
@@ -63,6 +68,11 @@
     transform: scaleY(0);
     transform-origin: top;
     transition: transform 0.3s ease;
+    pointer-events: none;
+    @include desktop {
+      opacity: 0.1;
+      height: 100%;
+    }
   }
 
   &:hover,
@@ -94,7 +104,7 @@ link:focus,
   padding: 40px 0px;
 
   @include desktop {
-    padding: 20px;
+    padding: 12px 20px;
   }
 }
 
@@ -108,25 +118,47 @@ link:focus,
 }
 
 .navbar {
+  .nav-item > .dropdown-toggle::after {
+    border: 0;
+    margin-left: 0.255em;
+    vertical-align: 1px;
+    content: "\e64b";
+    font-family: "themify";
+    font-size: 11px;
+    width: auto;
+  }
   .dropdown {
-    &:hover {
-      .dropleft .dropdown-menu {
-        right: calc(100% + 15px);
+    .dropdown-menu li {
+      padding-top: 10px;
+      &:last-child {
+        padding-bottom: 15px;
       }
-      > .dropdown-menu {
-        visibility: visible;
-        opacity: 1;
-        transform: translateY(0);
-        &.dropdown-submenu {
-          top: 0;
+    }
+    .dropdown-menu.dropdown-submenu {
+      top: 0;
+      @include desktop {
+        li:first-child {
+          margin-top: 15px;
         }
       }
     }
+    .dropdown-item .dropdown-toggle {
+      display: block;
+      line-height: 1.8;
+    }
 
+    &:hover > {
+      .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     &-menu {
       box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
       border-bottom: 5px solid $primary-color;
-      padding: 15px;
+      padding: 0 15px;
+      padding-left: 5px;
       top: 96px;
       border-radius: 0;
       display: block;
@@ -137,11 +169,15 @@ link:focus,
       background: $white;
 
       @include desktop {
+        padding-left: 15px;
         display: none;
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
         transform-origin: unset;
+        margin: 0;
+        border: 0;
+        position: static;
       }
 
       &.show {
@@ -154,6 +190,7 @@ link:focus,
       }
     }
 
+    .dropdown .dropdown-toggle,
     &-item {
       position: relative;
       color: $text-color-dark;
@@ -165,14 +202,19 @@ link:focus,
         text-align: center;
       }
 
-      &:not(:last-child) {
-        margin-bottom: 10px;
-      }
-
       &:hover {
         color: $primary-color;
         background: transparent;
       }
     }
+  }
+}
+.navbar .dropdown-item {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+@media (max-width: 991px) {
+  .navbar .dropdown-item {
+    white-space: normal;
   }
 }
